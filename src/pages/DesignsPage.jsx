@@ -1,10 +1,10 @@
-import { NavLink, useNavigate } from 'react-router-dom'
 import { useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { designs, getStatusBadgeClasses } from '../data/designs.js'
 import BottomNav from '../components/BottomNav.jsx'
 import Header1 from '../components/Header1.jsx'
 
-export default function DesignsPage() {
+export default function DesignsPageBlue() {
   const navigate = useNavigate()
   const [query, setQuery] = useState('')
 
@@ -15,27 +15,29 @@ export default function DesignsPage() {
   }, [query])
 
   return (
-    <div className="min-h-screen bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 flex flex-col">
-   <Header1 title="T-Prints" />
+    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col">
+      <Header1 title="T-Prints" />
+
       <main className="flex-1 max-w-5xl mx-auto w-full p-4 space-y-6 pb-24">
         <section className="container-query">
-          <div className="flex flex-col @[480px]:flex-row items-start @[480px]:items-center justify-between gap-4 rounded-xl border border-primary/20 bg-primary/10 p-5">
+          <div className="flex flex-col @[480px]:flex-row items-start @[480px]:items-center justify-between gap-4 rounded-xl border border-blue-200 bg-blue-50 p-5 shadow-sm">
             <div className="flex items-start gap-3">
-              <div className="mt-0.5 text-primary">
+              <div className="mt-0.5 text-blue-600">
                 <span className="material-symbols-outlined">info</span>
               </div>
               <div className="flex flex-col gap-1">
-                <p className="text-slate-900 dark:text-slate-100 text-base font-bold leading-tight">
+                <p className="text-slate-900 text-base font-bold leading-tight">
                   Primero debes seleccionar una camisa
                 </p>
-                <p className="text-slate-600 dark:text-slate-400 text-sm font-normal leading-normal">
+                <p className="text-slate-600 text-sm font-normal leading-normal">
                   Para aplicar un diseño a tu pedido, elige una prenda base de nuestro catálogo.
                 </p>
               </div>
             </div>
+
             <button
               onClick={() => navigate('/productos')}
-              className="w-full @[480px]:w-auto flex min-w-[160px] items-center justify-center rounded-lg h-10 px-4 bg-primary text-white text-sm font-semibold shadow-sm hover:bg-primary/90 transition-colors"
+              className="w-full @[480px]:w-auto flex min-w-[160px] items-center justify-center rounded-lg h-10 px-4 bg-blue-600 text-white text-sm font-semibold shadow-sm hover:bg-blue-700 transition-colors"
             >
               <span className="truncate">Ir a seleccionar camisa</span>
             </button>
@@ -50,19 +52,22 @@ export default function DesignsPage() {
             <input
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+              className="w-full bg-white border border-slate-300 rounded-lg py-2 pl-10 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-blue-400 transition-all"
               placeholder="Buscar diseños..."
               type="text"
             />
           </div>
-          <button className="flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 px-3 py-2 text-slate-600 dark:text-slate-400">
+
+          <button className="flex items-center justify-center rounded-lg border border-slate-300 bg-white px-3 py-2 text-slate-600 hover:bg-slate-100 transition-colors">
             <span className="material-symbols-outlined">tune</span>
           </button>
         </div>
 
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-slate-900 dark:text-slate-100">Diseños Disponibles</h2>
-          <button className="text-primary text-sm font-semibold">Ver todos</button>
+          <h2 className="text-lg font-bold text-slate-900">Diseños Disponibles</h2>
+          <button className="text-blue-600 text-sm font-semibold hover:text-blue-700 transition-colors">
+            Ver todos
+          </button>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -71,9 +76,9 @@ export default function DesignsPage() {
             return (
               <div
                 key={d.id}
-                className="group flex flex-col bg-white dark:bg-slate-800 rounded-xl overflow-hidden border border-slate-200 dark:border-slate-700 shadow-sm hover:shadow-md transition-shadow"
+                className="group flex flex-col bg-white rounded-xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow"
               >
-                <div className="aspect-square relative overflow-hidden bg-slate-100 dark:bg-slate-900 flex items-center justify-center p-6">
+                <div className="aspect-square relative overflow-hidden bg-slate-100 flex items-center justify-center p-6">
                   <img
                     alt={d.title}
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform"
@@ -87,9 +92,10 @@ export default function DesignsPage() {
                     </span>
                   </div>
                 </div>
+
                 <div className="p-3">
-                  <h3 className="font-bold text-slate-900 dark:text-slate-100 text-sm">{d.title}</h3>
-                  <p className="text-slate-500 dark:text-slate-400 text-xs mt-1">{d.subtitle}</p>
+                  <h3 className="font-bold text-slate-900 text-sm">{d.title}</h3>
+                  <p className="text-slate-500 text-xs mt-1">{d.subtitle}</p>
                 </div>
               </div>
             )
@@ -97,15 +103,14 @@ export default function DesignsPage() {
         </div>
 
         <div className="py-10 text-center">
-          <button className="flex items-center justify-center gap-2 mx-auto rounded-xl border-2 border-dashed border-slate-300 dark:border-slate-700 px-6 py-8 w-full max-w-xs text-slate-500 dark:text-slate-400 hover:border-primary hover:text-primary transition-all">
+          <button className="flex items-center justify-center gap-2 mx-auto rounded-xl border-2 border-dashed border-slate-300 px-6 py-8 w-full max-w-xs text-slate-600 hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all">
             <span className="material-symbols-outlined">add_circle</span>
             <span className="font-semibold">Subir diseño personalizado</span>
           </button>
         </div>
       </main>
-      <BottomNav />
 
-      
+      <BottomNav />
     </div>
   )
 }
